@@ -6,7 +6,6 @@ from datarteapi.utils import to_utc_datetime
 
 from .base_client import BaseClient
 
-datetime.fromisoformat("2017-09-01T12:00:00Z")
 
 class BigSubstations(BaseClient):
     """Big Substations API.
