@@ -2,20 +2,8 @@
 data-rte-python-api: Une API Python permettant de communiquer avec les APIs Data RTE
 ====================================================================================
 
-.. image:: https://img.shields.io/badge/python-3.7%2B-blue.svg
-    :alt: Supported Python versions
+|python-versions| |code-style| |mypy| |isort|
 
-.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
-    :alt: Code style: Black
-    :target: https://github.com/psf/black
-
-.. image:: https://img.shields.io/badge/mypy-checked-blue
-    :alt: Mypy: checked
-    :target: http://mypy-lang.org/
-
-.. image:: https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336
-    :alt: Imports: isort
-    :target: https://pycqa.github.io/isort/
 
 ``data-rte-python-api`` permet de communiquer avec les `APIs du RTE <https://data.rte-france.com/>`_.
 
@@ -58,3 +46,19 @@ En fonction de l'API que vous utilisez, les fuseaux horaires ne sont pas gérés
 Si uniquement le fuseau UTC est supporté, les dates avec fuseau horaire seront converties en UTC. Dans le cas contraire, le fuseau horaire local est utilisé avant d'être converti en UTC.
 
 Pour plus de détails, se référer à la documentation de l'API correspondante.
+
+.. |python-versions| image:: https://img.shields.io/badge/python-3.7%2B-blue.svg
+    :alt: Supported Python versions
+    :target: https://www.python.org/downloads/
+
+.. |code-style| image:: https://img.shields.io/badge/code%20style-black-000000.svg
+    :alt: Code style: Black
+    :target: https://github.com/psf/black
+
+.. |mypy| image:: https://img.shields.io/badge/mypy-checked-blue
+    :alt: Mypy: checked
+    :target: http://mypy-lang.org/
+
+.. |isort| image:: https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336
+    :alt: Imports: isort
+    :target: https://pycqa.github.io/isort/

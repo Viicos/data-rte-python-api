@@ -2,20 +2,8 @@
 data-rte-python-api: A Python API wrapper for the data APIs of the RTE
 ======================================================================
 
-.. image:: https://img.shields.io/badge/python-3.7%2B-blue.svg
-    :alt: Supported Python versions
+|python-versions| |code-style| |mypy| |isort|
 
-.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
-    :alt: Code style: Black
-    :target: https://github.com/psf/black
-
-.. image:: https://img.shields.io/badge/mypy-checked-blue
-    :alt: Mypy: checked
-    :target: http://mypy-lang.org/
-
-.. image:: https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336
-    :alt: Imports: isort
-    :target: https://pycqa.github.io/isort/
 
 ``data-rte-python-api`` is a Python API wrapper for the `APIs of the RTE <https://data.rte-france.com/>`_.
 
@@ -58,3 +46,19 @@ Depending on the API you are using, date timezones are handled differently. If a
 If only UTC is supported, timezone aware dates will be converted to UTC. For unware dates, local timezone is used before being converted to UTC.
 
 For more details, refer to the corresponding API documentation.
+
+.. |python-versions| image:: https://img.shields.io/badge/python-3.7%2B-blue.svg
+    :alt: Supported Python versions
+    :target: https://www.python.org/downloads/
+
+.. |code-style| image:: https://img.shields.io/badge/code%20style-black-000000.svg
+    :alt: Code style: Black
+    :target: https://github.com/psf/black
+
+.. |mypy| image:: https://img.shields.io/badge/mypy-checked-blue
+    :alt: Mypy: checked
+    :target: http://mypy-lang.org/
+
+.. |isort| image:: https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336
+    :alt: Imports: isort
+    :target: https://pycqa.github.io/isort/
