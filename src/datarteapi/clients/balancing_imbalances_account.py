@@ -1,4 +1,6 @@
-from typing import Any, ClassVar, Dict
+from typing import ClassVar
+
+from datarteapi.apiresponse import APIResponse
 
 from .base_client import BaseClient
 
@@ -14,6 +16,6 @@ class BalancingImbalancesAccount(BaseClient):
     ] = "https://digital.iservices.rte-france.com/open_api/balancing_imbalances_account/v1/"
     api_version: ClassVar[tuple[int, int, int]] = (1, 0, 1)
 
-    def get_coefficient_k(self, application_month: str) -> Dict[str, Any]:
+    def get_coefficient_k(self, application_month: str) -> APIResponse:
         params = {"application_month": application_month}
         return self._get("coefficient_k", params=params)

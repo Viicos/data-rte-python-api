@@ -1,6 +1,7 @@
 from datetime import datetime
-from typing import Any, ClassVar, Dict, Optional
+from typing import ClassVar, Dict, Optional
 
+from datarteapi.apiresponse import APIResponse
 from datarteapi.typing import COUNTRY_EIC_CODE, DATE_TYPE, SCT, UNAVAILABILITY_STATUS
 
 from .base_client import BaseClient
@@ -25,7 +26,7 @@ class UnavailabilityAdditionalInformation(BaseClient):
         country_eic_code: Optional[SCT[COUNTRY_EIC_CODE]] = None,
         date_type: Optional[DATE_TYPE] = None,
         last_version: Optional[bool] = None,
-    ) -> Dict[str, Any]:
+    ) -> APIResponse:
         params: Dict[str, str] = {}
 
         if start_date is not None:
@@ -47,7 +48,7 @@ class UnavailabilityAdditionalInformation(BaseClient):
 
         return self._get("transmission_network_unavailabilities", params=params)
 
-    def get_transmission_network_unavailabilities_versions(self, identifier: str) -> Dict[str, Any]:
+    def get_transmission_network_unavailabilities_versions(self, identifier: str) -> APIResponse:
         return self._get(f"transmission_network_unavailabilities/{identifier}/versions")
 
     def get_generation_unavailabilities(
@@ -57,7 +58,7 @@ class UnavailabilityAdditionalInformation(BaseClient):
         status: Optional[SCT[UNAVAILABILITY_STATUS]] = None,
         date_type: Optional[DATE_TYPE] = None,
         last_version: Optional[bool] = None,
-    ) -> Dict[str, Any]:
+    ) -> APIResponse:
         params: Dict[str, str] = {}
 
         if start_date is not None:
@@ -75,10 +76,10 @@ class UnavailabilityAdditionalInformation(BaseClient):
 
         return self._get("generation_unavailabilities", params=params)
 
-    def get_generation_unavailabilities_versions(self, identifier: str) -> Dict[str, Any]:
+    def get_generation_unavailabilities_versions(self, identifier: str) -> APIResponse:
         return self._get(f"generation_unavailabilities/{identifier}/versions")
 
-    def get_additional_informations(self, start_date: datetime, end_date: datetime) -> Dict[str, Any]:
+    def get_additional_informations(self, start_date: datetime, end_date: datetime) -> APIResponse:
         params = {
             "start_date": start_date.isoformat(),
             "end_date": end_date.isoformat(),

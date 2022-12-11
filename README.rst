@@ -10,7 +10,7 @@ data-rte-python-api: A Python API wrapper for the data APIs of the RTE
 Installation
 ------------
 
-The library can be installed using ``pip`` (the library is not published on PyPI yet):
+The library can be installed using ``pip``:
 
 .. code-block:: shell
 
@@ -30,12 +30,14 @@ You will have to register an application to get a ``client_id`` and ``client_sec
     client = BigSubstations(client_id="your_client_id", client_secret="your_client_secret")
 
     try:
-        client.get_pds_data(
+        apiresponse = client.get_pds_data(
             start_date=datetime.fromisoformat("2017-09-01T12:00:00"),
             end_date=datetime.fromisoformat("2017-09-01T23:00:00")
         )
     except BaseAPIException as e:
         # Handle the exception
+
+    print(apiresponse.data, apiresponse.headers)
 
 Currently, only the APIs working with OAuth are available.
 

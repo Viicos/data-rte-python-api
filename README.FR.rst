@@ -10,7 +10,7 @@ data-rte-python-api: Une API Python permettant de communiquer avec les APIs Data
 Installation
 ------------
 
-La librairie peut être installée en utilisant ``pip`` (la librairie n'est pas publiée sur PyPI pour le moment) :
+La librairie peut être installée en utilisant ``pip`` :
 
 .. code-block:: shell
 
@@ -30,12 +30,14 @@ Vous devez au préalable enregistrer une application pour obtenir un ``client_id
     client = BigSubstations(client_id="your_client_id", client_secret="your_client_secret")
 
     try:
-        client.get_pds_data(
+        apiresponse = client.get_pds_data(
             start_date=datetime.fromisoformat("2017-09-01T12:00:00"),
             end_date=datetime.fromisoformat("2017-09-01T23:00:00")
         )
     except BaseAPIException as e:
         # Handle the exception
+
+    print(apiresponse.data, apiresponse.headers)
 
 Pour le moment, uniquement les APIs utilisant OAuth sont disponibles.
 

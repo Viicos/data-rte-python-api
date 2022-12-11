@@ -4,6 +4,7 @@ from urllib.parse import urljoin
 
 import requests
 
+from datarteapi.apiresponse import APIResponse
 from datarteapi.exceptions import APIException, TooManyRequestsAPIException, UnauthenticatedException
 from datarteapi.oauth_manager import OAuthManager
 
@@ -46,7 +47,7 @@ class BaseClient(ABC):
         """:obj:`bool`: Whether the client is authentified or not."""
         return bool(self.session.headers.get("Authorization"))
 
-    def _request(self, method: str, endpoint: str, retry: bool = True, **kwargs: Any) -> Dict[str, Any]:
+    def _request(self, method: str, endpoint: str, retry: bool = True, **kwargs: Any) -> APIResponse:
         if not self.authentified:
             raise UnauthenticatedException(
                 f"Client {self.__class__.__qualname__!r} must be authentified before making requests. Consider calling 'authentify' before."
@@ -71,9 +72,9 @@ class BaseClient(ABC):
             raise APIException(status_code=response.status_code)
 
         data: Dict[str, Any] = response.json()
-        return data
+        return APIResponse(data=data, response_headers=response.headers)
 
-    def _get(self, endpoint: str, params: Optional[Dict[str, Any]] = None, **kwargs: Any) -> Dict[str, Any]:
+    def _get(self, endpoint: str, params: Optional[Dict[str, Any]] = None, **kwargs: Any) -> APIResponse:
         return self._request("get", endpoint, params=params, **kwargs)
 
     def _post(
@@ -82,7 +83,7 @@ class BaseClient(ABC):
         params: Optional[Dict[str, Any]] = None,
         json: Optional[Dict[str, Any]] = None,
         **kwargs: Any,
-    ) -> Dict[str, Any]:
+    ) -> APIResponse:
         return self._request("post", endpoint, params=params, json=json, **kwargs)
 
     def authentify(self) -> None:

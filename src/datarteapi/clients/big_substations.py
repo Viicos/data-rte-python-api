@@ -1,6 +1,7 @@
 from datetime import datetime
-from typing import Any, ClassVar, Dict, Literal, Optional, Union
+from typing import ClassVar, Literal, Optional, Union
 
+from datarteapi.apiresponse import APIResponse
 from datarteapi.typing import EXCHANGE_DATA_DATA_TYPE, PDS_DATA_DATA_TYPE, PDS_DATA_RAW_DATA_TYPE, SCT
 from datarteapi.utils import to_utc_datetime
 
@@ -24,7 +25,7 @@ class BigSubstations(BaseClient):
         end_date: datetime,
         eic_dso: Optional[SCT[str]] = None,
         data_type: Optional[SCT[Union[PDS_DATA_DATA_TYPE, EXCHANGE_DATA_DATA_TYPE, PDS_DATA_RAW_DATA_TYPE]]] = None,
-    ) -> Dict[str, Any]:
+    ) -> APIResponse:
         params = {
             "start_date": to_utc_datetime(start_date).isoformat().replace("+00:00", "Z"),
             "end_date": to_utc_datetime(end_date).isoformat().replace("+00:00", "Z"),
@@ -42,7 +43,7 @@ class BigSubstations(BaseClient):
         end_date: datetime,
         eic_dso: Optional[SCT[str]] = None,
         data_type: Optional[SCT[PDS_DATA_DATA_TYPE]] = None,
-    ) -> Dict[str, Any]:
+    ) -> APIResponse:
         return self._get_data("pds_data", "PT30M", start_date, end_date, eic_dso, data_type)
 
     def get_exchange_date(
@@ -51,7 +52,7 @@ class BigSubstations(BaseClient):
         end_date: datetime,
         eic_dso: Optional[SCT[str]] = None,
         data_type: Optional[SCT[EXCHANGE_DATA_DATA_TYPE]] = None,
-    ) -> Dict[str, Any]:
+    ) -> APIResponse:
         return self._get_data("pds_data", "PT30M", start_date, end_date, eic_dso, data_type)
 
     def get_pds_data_raw(
@@ -61,5 +62,5 @@ class BigSubstations(BaseClient):
         end_date: datetime,
         eic_dso: Optional[SCT[str]] = None,
         data_type: Optional[SCT[PDS_DATA_RAW_DATA_TYPE]] = None,
-    ) -> Dict[str, Any]:
+    ) -> APIResponse:
         return self._get_data("pds_data_raw", resolution, start_date, end_date, eic_dso, data_type)

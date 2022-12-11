@@ -11,7 +11,7 @@ class BaseAPIException(Exception):
         self.attrs: Dict[str, Any] = {"status_code": status_code}
 
     def __str__(self) -> str:
-        return f"{self.__class__.__qualname__}({', '.join(f'{attr}={value}' for attr, value in self.attrs.items() if value is not None)})"
+        return f"{type(self).__qualname__}({', '.join(f'{attr}={value}' for attr, value in self.attrs.items() if value is not None)})"
 
 
 class TooManyRequestsAPIException(BaseAPIException):
